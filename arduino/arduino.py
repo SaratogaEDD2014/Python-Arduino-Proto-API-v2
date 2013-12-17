@@ -48,6 +48,10 @@ class Arduino(object):
         self.__sendData(pin)
         return self.__getData()
 
+    def step(self):
+        self.__sendData('5')
+        return True
+
     def turnOff(self):
         for each_pin in self.__OUTPUT_PINS:
             self.setLow(each_pin)
