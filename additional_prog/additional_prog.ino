@@ -46,6 +46,9 @@ void loop() {
         case 6:
             //make motor rotate a given number of steps
             rotate(readData(), 0.5); break;
+        case 7:
+            //make motor rotate a given number of steps in the opposite direction
+            rotate(-1*(readData()), 0.5); break;
         case 99:
             //just dummy to cancel the current read, needed to prevent lock 
             //when the PC side dropped the "w" that we sent
