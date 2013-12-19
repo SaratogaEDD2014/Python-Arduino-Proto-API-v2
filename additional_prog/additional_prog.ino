@@ -30,7 +30,6 @@ void loop() {
         case 1 :
             //set digital high
             digitalWrite(readData(), HIGH); break;
-            
         case 2 :
             //get digital value
             Serial.println(digitalRead(readData())); break;
