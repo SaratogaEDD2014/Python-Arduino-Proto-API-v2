@@ -46,9 +46,6 @@ void loop() {
         case 6:
             //make motor rotate a given number of steps
             rotate(readData(), 0.5); break;
-        case 7:
-            //make motor move a relative distance
-            rotate(readData()*shaftSize*stepsPerRev*pitch
         case 99:
             //just dummy to cancel the current read, needed to prevent lock 
             //when the PC side dropped the "w" that we sent
