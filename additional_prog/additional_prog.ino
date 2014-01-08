@@ -67,7 +67,6 @@ char readData() {
 
 void stepOne(){
   rotate(80, .5);
-  delay(100);
 }
 
 void rotate(int steps, float speed){ 

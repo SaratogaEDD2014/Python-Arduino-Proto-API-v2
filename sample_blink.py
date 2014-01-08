@@ -10,7 +10,7 @@ b.output([pin])
 #b.output([2,3])
 
 
-for x in range(100):
+for x in range(200):
     #b.setHigh(pin)
     #time.sleep(1)
     #print b.getState(pin)

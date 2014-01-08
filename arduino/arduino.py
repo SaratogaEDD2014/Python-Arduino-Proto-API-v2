@@ -57,6 +57,9 @@ class Arduino(object):
             self.setLow(each_pin)
         return True
 
+    def sendData(self, data):
+        self.__sendData(data)
+
     def __sendData(self, serial_data):
         while(self.__getData()[0] != "w"):
             pass

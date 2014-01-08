@@ -15,14 +15,15 @@ class ArduinoStepMotor(Arduino):
     def relMove(self, distance):
         microSteps = 8 #number of microsteps in a step
         stepsPerRev = 200 #number of steps in a rotation
-        numSteps = microSteps*stepPerRev*self.pitch*distance
-        numSteps = round(numSteps,0)
-        if(numsSteps<0):
+        #numSteps = microSteps*stepsPerRev*self.pitch*distance    -not sure why these lines don't work
+        #numSteps = round(numSteps,0)
+        numSteps=distance
+        if(numSteps<0):
             numSteps = numSteps*-1
             self.sendData(7)
         else:
             self.sendData(6)
         self.sendData(numSteps)
 
-sKotty = ArduinoStepMotor(COM3)
-sKotty.relMove (100)
+x=ArduinoStepMotor("COM5")
+x.relMove (100)
