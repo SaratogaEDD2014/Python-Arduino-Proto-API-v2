@@ -1,4 +1,5 @@
-from ardunio import *
+from arduino import *
+import time
 
 class ArduinoStepMotor(Arduino):
     def __init__(self, port, baudrate=115200, units = 'in', limit = 12):
@@ -8,12 +9,12 @@ class ArduinoStepMotor(Arduino):
         self.limit = limit #maximum distance motor is allowed to move
 
         if(self.units == 'in'):
-            pitch = 50.8
+            self.pitch = 50.8
         elif(self.units == 'mm'):
-            pitch = 2
+            self.pitch = 2
         else:
             print('invalid agruement for units, units must be set to "in" or "mm"')
-            pitch = 50.8
+            self.pitch = 50.8
 
     def relMove(self, distance):
 
@@ -25,14 +26,14 @@ class ArduinoStepMotor(Arduino):
         if (self.position + distance < 0):
             distance = self.position* -1
 
-        numSteps = microSteps*stepPerRev*self.pitch*distance
+        numSteps = microSteps*stepsPerRev*self.pitch*distance
         numSteps = round(numSteps,0)
-        if(numsSteps<0):
+        if(numSteps<0):
             numSteps = numSteps*-1
-            self.sendData(7)
+            self.sendData('7')
         else:
-            self.sendData(6)
-        self.sendData(numSteps)
+            self.sendData('6')
+        self.sendData(str(numSteps))
         self.position = self.position + distance
 
     def absMove(self, newPosition):
@@ -46,6 +47,8 @@ class ArduinoStepMotor(Arduino):
     def reset(self): # WARNING: THIS CAN INTERFERE WITH PROTCOLS WHICH PREVENT THE MOTOR FROM MOVING OUT OF RANGE
         self.position = 0
 
-sKotty = ArduinoStepMotor(COM3)
-sKotty.relMove (100)
+sKotty = ArduinoStepMotor('COM5')
+for i in range(20):
+    time.sleep(.1)
+    sKotty.relMove(9)
 sKotty.absMove (0)

@@ -44,7 +44,8 @@ void loop() {
             stepOne(); break;
         case 6:
             //make motor rotate a given number of steps
-            rotate(readData(), 0.5);break;
+            //rotate(readData(), 0.5);break;
+            rotate(400, 0.5); break;
         case 7:
             //make motor rotate a given number of steps in the opposite direction
             rotate(-1*(readData()), 0.5); break;
