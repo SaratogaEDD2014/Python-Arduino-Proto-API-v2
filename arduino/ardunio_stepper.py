@@ -17,24 +17,9 @@ class ArduinoStepMotor(Arduino):
             self.pitch = 50.8
 
     def relMove(self, distance):
-
-        microSteps = 8 #number of microsteps in a step
-        stepsPerRev = 200 #number of steps in a rotation
-
-        if (self.position + distance > self.limit):
-            distance = self.limit - self.position
-        if (self.position + distance < 0):
-            distance = self.position* -1
-
-        numSteps = microSteps*stepsPerRev*self.pitch*distance
-        numSteps = round(numSteps,0)
-        if(numSteps<0):
-            numSteps = numSteps*-1
-            self.sendData('7')
-        else:
-            self.sendData('6')
-        self.sendData(str(numSteps))
-        self.position = self.position + distance
+        self.sendData('6')
+        self.sendData(str(distance))
+        #self.position = self.position + distance
 
     def absMove(self, newPosition):
         if (newPosition < 0):
@@ -48,7 +33,7 @@ class ArduinoStepMotor(Arduino):
         self.position = 0
 
 sKotty = ArduinoStepMotor('COM5')
-for i in range(20):
-    time.sleep(.1)
-    sKotty.relMove(9)
-sKotty.absMove (0)
+for i in range(200):
+    time.sleep(.005)
+    sKotty.relMove(400)
+

@@ -5,6 +5,7 @@ import serial
 #b = Arduino('/dev/ttyUSB0')
 b = Arduino('COM5')
 pin = 3
+#ser=serial.Serial('COM5', 9600)
 
 #declare output pins as a list/tuple
 #b.output([pin])
@@ -13,17 +14,15 @@ pin = 3
 
 for x in range(200):
     #b.setHigh(pin)
-    #time.sleep(1)
     #print b.getState(pin)
     #b.setLow(pin)
     #print b.getState(pin)
-#time.sleep(1)
-    b.step()
-    #time.sleep(1)
-#b.sendData('6')
-#time.sleep(0.05)
-#b.sendData('9')
-#ser=serial.Serial('COM5', 9600)
-#time.sleep(1)
+    #b.step()
+    time.sleep(.005)
 #ser.write('6')
+    b.sendData('6')
+    b.sendData('400')
+#b.sendData('9')
+#time.sleep(1)
+
 b.close()
