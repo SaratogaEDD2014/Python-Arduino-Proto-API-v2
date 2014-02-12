@@ -34,8 +34,8 @@ class ArduinoStepMotor(Arduino):
     def reset(self): # WARNING: THIS CAN INTERFERE WITH PROTCOLS WHICH PREVENT THE MOTOR FROM MOVING OUT OF RANGE
         self.position = 0
 
-sKotty = ArduinoStepMotor('COM5')
+ar1 = ArduinoStepMotor('COM5')
 for i in range(200):
     time.sleep(.005)
-    sKotty.relMove(400)
+    ar1.relMove(400)
 
