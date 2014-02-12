@@ -17,8 +17,12 @@ class ArduinoStepMotor(Arduino):
             self.pitch = 50.8
 
     def relMove(self, distance):
-        self.sendData('6')
-        self.sendData(str(distance))
+        if(distance < 900): #900 is a dummy value used as an example, will input actual value later
+            self.sendData('6')
+            self.sendData(str(distance))
+        else:
+            print("distance out of range")
+            break
         #self.position = self.position + distance
 
     def absMove(self, newPosition):
