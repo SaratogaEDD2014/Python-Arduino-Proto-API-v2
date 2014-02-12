@@ -36,6 +36,6 @@ class ArduinoStepMotor(Arduino):
 
 ar1 = ArduinoStepMotor('COM5')
 for i in range(200):
-    time.sleep(.005)
+    time.sleep(.005) #time.sleep is needed to prevent the arduino from crashing
     ar1.relMove(400)
 
