@@ -1,6 +1,0 @@
-
-import serial
-ser=serial.Serial('COM5', 9600)#COM5 should be changed depending on the Arduino.
-while True:
-    print ser.readline()
-#this should print the result of the Arduino code, hasn't been tested yet.
