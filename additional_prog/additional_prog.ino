@@ -1,5 +1,5 @@
 #ifndef SERIAL_RATE
-#define SERIAL_RATE         115200
+#define SERIAL_RATE         9600//115200
 #endif
 
 #ifndef SERIAL_TIMEOUT
@@ -23,6 +23,7 @@ void setup() {
 }
 
 void loop() {
+  int steps = 0;
     switch (readData()) {
         case 0 :
             //set digital low
@@ -44,10 +45,14 @@ void loop() {
             stepOne(); break;
         case 6:
             //make motor rotate a given number of steps
-            rotate(readData(), 0.5); break;
+            steps = int(readData());
+            rotate(steps, .5);
+            //stepOne();
+            Serial.println(steps);
+            break;
         case 7:
             //make motor rotate a given number of steps in the opposite direction
-            rotate(-1*(readData()), 0.5); break;
+            rotate(-1*(readData()), 0.75); break;
         case 99:
             //just dummy to cancel the current read, needed to prevent lock 
             //when the PC side dropped the "w" that we sent
@@ -66,10 +71,11 @@ char readData() {
 
 
 void stepOne(){
-  rotate(80, .5);
+  Serial.println('s');
+  rotate(100, .5);
 }
 
-void rotate(int steps, float speed){ 
+void rotate(int steps, float speed){
   //rotate a specific number of microsteps (8 microsteps per step) - (negitive for reverse movement)
   //speed is any number from .01 -> 1 with 1 being fastest - Slower is stronger
   int dir = (steps > 0)? HIGH:LOW;
@@ -86,6 +92,7 @@ void rotate(int steps, float speed){
     digitalWrite(STEP_PIN, LOW); 
     delayMicroseconds(usDelay); 
   } 
+  Serial.begin(SERIAL_RATE);
 } 
 
 void rotateDeg(float deg, float speed){ 
@@ -105,6 +112,5 @@ void rotateDeg(float deg, float speed){
     delayMicroseconds(usDelay); 
   } 
 }
-
 
 
