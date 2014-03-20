@@ -38,8 +38,8 @@ int irRead(int readPin, int triggerPin)
     digitalWrite(triggerPin, LOW); 
     delayMicroseconds(halfPeriod - 1);     // - 1 to make up for digitaWrite overhead    
   }
-  //return digitalRead(readPin);
-  //return analogRead(readPin);
+  return digitalRead(readPin);
+  return analogRead(readPin);
   Serial.println(digitalRead(readPin));
   Serial.println(analogRead(readPin));
 }
