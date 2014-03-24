@@ -8,6 +8,7 @@
 
 #define DIR_PIN 2
 #define STEP_PIN 3
+#define LIM_PIM 6
 
 void setup() {
     Serial.begin(SERIAL_RATE);
@@ -53,6 +54,12 @@ void loop() {
         case 7:
             //make motor rotate a given number of steps in the opposite direction
             rotate(-1*(readData()), 0.75); break;
+        case 8:
+	        //runs the motor until it hits the limit
+        	while(digitalRead(LIM_PIN)==LOW);
+		        stepOne();
+		    break;
+	break;
         case 99:
             //just dummy to cancel the current read, needed to prevent lock 
             //when the PC side dropped the "w" that we sent
