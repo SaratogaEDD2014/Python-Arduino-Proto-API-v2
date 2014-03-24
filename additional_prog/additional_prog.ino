@@ -55,10 +55,10 @@ void loop() {
             //make motor rotate a given number of steps in the opposite direction
             rotate(-1*(readData()), 0.75); break;
         case 8:
-	        //runs the motor until it hits the limit
-        	while(digitalRead(LIM_PIN)==LOW);
-		        stepOne();
-		    break;
+	    //runs the motor until it hits the limit
+            while(digitalRead(LIM_PIN)==LOW);
+            	stepOne();
+	    break;
 	break;
         case 99:
             //just dummy to cancel the current read, needed to prevent lock 
